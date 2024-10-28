@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evaluation index{% endblock %}
+
+{% block body %}
+    <h1>Evaluation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Élève</th>
+                <th>Catégorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evaluation in evaluations %}
+            <tr>
+                <td>{{ evaluation.id }}</td>
+                <td>{{ evaluation.date ? evaluation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ evaluation.student.firstname }} {{ evaluation.student.surname }}</td>
+                <td>{{ evaluation.category.name }}</td>
+                <td>
+                    <a href="{{ path('app_evaluation_show', {'id': evaluation.id}) }}">show</a>
+                    <a href="{{ path('app_evaluation_edit', {'id': evaluation.id}) }}">edit</a>
+                    <a href="{{ path('app_evaluation_delete', {'id':evaluation.id}) }}">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evaluation_new') }}">Create new</a>
+{% endblock %}

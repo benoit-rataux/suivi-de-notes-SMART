@@ -23,6 +23,9 @@ class Evaluation
     #[ORM\ManyToOne(inversedBy: 'evaluations')]
     private ?Category $category = null;
 
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $grade = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Evaluation
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getGrade(): ?int
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(int $grade): static
+    {
+        $this->grade = $grade;
 
         return $this;
     }
