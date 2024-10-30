@@ -14,7 +14,10 @@
         {% endblock %}
     </head>
     <body>
-        {{ include('_navigation_menu.html.twig')}}
+        {{ include('widget/_navigation_menu.html.twig')}}
+
+        <h1>{{ block('title') }}</h1>
+
         {% block body %}{% endblock %}
     </body>
 </html>

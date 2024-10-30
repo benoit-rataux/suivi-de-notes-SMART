@@ -3,16 +3,15 @@
 {% block title %}Student index{% endblock %}
 
 {% block body %}
-    <h1>Student index</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Surname</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Surname</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for student in students %}

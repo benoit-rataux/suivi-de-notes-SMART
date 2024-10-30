@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evaluation index{% endblock %}
+{% block title %}Évaluations{% endblock %}
 
 {% block body %}
-    <h1>Evaluation index</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Élève</th>
-                <th>Catégorie</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Élève</th>
+            <th>Catégorie</th>
+            <th>Note</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for evaluation in evaluations %}
@@ -22,6 +22,7 @@
                 <td>{{ evaluation.date ? evaluation.date|date('Y-m-d') : '' }}</td>
                 <td>{{ evaluation.student.firstname }} {{ evaluation.student.surname }}</td>
                 <td>{{ evaluation.category.name }}</td>
+                <td>{{ evaluation.grade }}</td>
                 <td>
                     <a href="{{ path('app_evaluation_show', {'id': evaluation.id}) }}">show</a>
                     <a href="{{ path('app_evaluation_edit', {'id': evaluation.id}) }}">edit</a>
