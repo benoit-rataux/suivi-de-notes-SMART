@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ entityName }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_evaluation_new') }}">Nouveau</a>
+
+    {% if items is not empty %}
+        <table>
+            <thead>
+            <tr>
+                {% for attribute in attributes %}
+
+                    <th>{{ attribute }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    {% endif %}
+{% endblock %}

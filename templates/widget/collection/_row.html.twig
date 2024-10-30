@@ -1,0 +1,10 @@
+<tr class="list__element">
+    {% for value in values %}
+        <td class="list__element__value">{{ value }}</td>
+    {% endfor %}
+    <td class="list__element__action-buttons">
+        <a class="button button--show" href="{{ path('app_'~entityName~'_show',     {'id': element.id}) }}">afficher</a>
+        <a class="button button--edit" href="{{ path('app_'~entityName~'_edit',     {'id': element.id}) }}">modifier</a>
+        <a class="button button--delete" href="{{ path('app_'~entityName~'_delete', {'id': element.id}) }}">supprimer</a>
+    </td>
+</tr>

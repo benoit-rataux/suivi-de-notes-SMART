@@ -1,0 +1,20 @@
+{% set path_to_element_template = entityName ~'/_element.html.twig' %}
+
+<table class="list">
+    <thead>
+    <tr>
+        {% for colTitle in colTitles %}
+            <th>{{ colTitle }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for element in collection %}
+        {% include path_to_element_template with {
+            'element': element,
+            'entityName': entityName,
+        } %}
+    {% endfor %}
+    </tbody>
+</table>

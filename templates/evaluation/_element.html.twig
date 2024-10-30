@@ -1,0 +1,8 @@
+{% extends 'ABSTRACT_TEMPLATE/table/element.html.twig' %}
+
+{% set values =  {
+    1: element.id,
+    2: element.date|date('Y-m-d'),
+    3: element.student.firstname~element.student.surname,
+    4: element.grade,
+} %}
