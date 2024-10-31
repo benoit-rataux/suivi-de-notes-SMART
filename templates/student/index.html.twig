@@ -1,19 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'ABSTRACT_TEMPLATE/CRUD/Read/all_elements.html.twig' %}
 
-{% block title %}Student index{% endblock %}
+{% block title %}Étudiants{% endblock %}
 
-{% block body %}
+{% set entityName = 'student' %}
+{% set collection = students %}
+{% set colTitles = {
+    1: 'id',
+    2:  'Prénom',
+    3:  'Nom de famille',
+} %}
 
-    <a class="button button--add" href="{{ path('app_student_new') }}">Create new</a>
-
-    {% include 'widget/collection/_table.html.twig' with {
-        'entityName':   'student',
-        'collection':   students,
-        'colTitles':    {
-            1:  'id',
-            2:  'Prénom',
-            3:  'Nom de famille',
-        }
-    } %}
-
-{% endblock %}

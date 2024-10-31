@@ -1,18 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'ABSTRACT_TEMPLATE/CRUD/Read/all_elements.html.twig' %}
 
 {% block title %}Catégories{% endblock %}
 
-{% block body %}
+{% set entityName = 'category' %}
+{% set collection = categories %}
+{% set colTitles = {
+    1: 'id',
+    2: 'Catégorie',
+} %}
 
-    <a class="button button--add" href="{{ path('app_category_new') }}">Ajouter</a>
-
-    {% include 'widget/collection/_table.html.twig' with {
-        'entityName':   'category',
-        'collection':   categories,
-        'colTitles':    {
-            1: 'id',
-            2: 'Catégorie',
-        }
-    } %}
-
-{% endblock %}

@@ -1,19 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'ABSTRACT_TEMPLATE/CRUD/Read/all_elements.html.twig' %}
 
 {% block title %}Évaluations{% endblock %}
 
-{% block body %}
+{% set entityName = 'evaluation' %}
+{% set collection = evaluations %}
+{% set colTitles = {
+    1:  'id',
+    2:  'Date',
+    3:  'Étudiant',
+    4:  'Note',
+} %}
 
-    <a class="button button--add" href="{{ path('app_evaluation_new') }}">Ajouter</a>
-
-    {% include 'widget/collection/_table.html.twig' with {
-        'entityName': 'evaluation',
-        'collection': evaluations,
-        'colTitles': {
-            1:'id',
-            2:'Date',
-            3:'Étudiant',
-            4:'Note',
-        }
-    } %}
-{% endblock %}

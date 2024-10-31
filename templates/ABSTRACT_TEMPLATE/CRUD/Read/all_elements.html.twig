@@ -1,27 +1,16 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}{{ entityName }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_evaluation_new') }}">Nouveau</a>
 
-    {% if items is not empty %}
-        <table>
-            <thead>
-            <tr>
-                {% for attribute in attributes %}
+    <a class="button button--add" href="{{ path('app_'~entityName~'_new') }}">Ajouter</a>
 
-                    <th>{{ attribute }}</th>
-                {% endfor %}
-            </tr>
-            </thead>
+    {% include 'widget/collection/_table.html.twig' with {
+        'entityName':   entityName,
+        'collection':   collection,
+        'colTitles':    colTitles,
+    } %}
 
-            {% for item in items %}
-                <tr>
-                    <td>{{ item.id }}</td>
-                </tr>
-            {% endfor %}
-
-        </table>
-    {% endif %}
 {% endblock %}
