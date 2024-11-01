@@ -5,13 +5,9 @@
 
 {% block body %}
     
-    {% include 'widget/button/crud/_create.html.twig' with {
-        'entityName':   entityName,
-    } %}
+    {% include 'widget/button/crud/_create.html.twig' %}
     
     {% include 'widget/collection/_table.html.twig' with {
-        'entityName':   entityName,
-        'collection':   collection,
         'colTitles':    colTitles,
     } %}
 
