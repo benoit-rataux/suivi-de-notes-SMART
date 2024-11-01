@@ -1,0 +1,13 @@
+{% set buttonClass = 'button' %}
+
+{% if cssClassModifier is defined %}
+    {% set buttonClasses = buttonClass~' '~buttonClass~'--'~cssClassModifier | lower %}
+{% else %}
+    {% set buttonClasses = buttonClass | lower %}
+{% endif %}
+
+{% if not text is defined %}
+    {% set text='must define \'text\' in include' %}
+{% endif %}
+
+<a href="{{ href }}" class="{{ buttonClasses }}">{{ text }}</a>

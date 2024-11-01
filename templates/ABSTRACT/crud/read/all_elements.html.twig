@@ -4,9 +4,11 @@
 {% block title %}{{ entityName }}{% endblock %}
 
 {% block body %}
-
-    <a class="button button--add" href="{{ path('app_'~entityName~'_new') }}">Ajouter</a>
-
+    
+    {% include 'widget/button/crud/_create.html.twig' with {
+        'entityName':   entityName,
+    } %}
+    
     {% include 'widget/collection/_table.html.twig' with {
         'entityName':   entityName,
         'collection':   collection,
