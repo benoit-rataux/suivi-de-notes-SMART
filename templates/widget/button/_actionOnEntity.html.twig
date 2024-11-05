@@ -4,8 +4,15 @@
     {% set href = path('app_'~entityName~'_'~action) %}
 {% endif %}
 
+{% if confirm is defined %}
+    {% set onClick = 'return confirm(\''~confirm~'\');' %}
+{% else %}
+    {% set onClick = null %}
+{% endif %}
+
 {% include 'widget/button/_base.html.twig' with {
-    'href': href,
+    'href':             href,
     'cssClassModifier': action,
-    'text': text,
+    'text':             text,
+    'onClick':          onClick,
 } %}

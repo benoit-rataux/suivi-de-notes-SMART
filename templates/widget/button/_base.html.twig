@@ -10,4 +10,8 @@
     {% set text='must define \'text\' in include' %}
 {% endif %}
 
+{% if onClick is defined %}
+    {% set onClickAction = 'onClick="'~onClick~'"' %}
+{% endif %}
+
 <a href="{{ href }}" class="{{ buttonClasses }}">{{ text }}</a>
