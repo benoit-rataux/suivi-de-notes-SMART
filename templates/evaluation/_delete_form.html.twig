@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('app_evaluation_delete', {'id': evaluation.id}) }}"
       onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evaluation.id) }}">
-    {% include 'widget/button/crud/_delete.html.twig' with {element: evaluation} %}
+    <button class="button button--delete">supprimer</button>
 </form>

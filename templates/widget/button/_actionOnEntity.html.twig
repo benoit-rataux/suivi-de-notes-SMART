@@ -1,7 +1,7 @@
 {% if element is defined %}
-    {% set href = path('app_'~entityName~'_'~action, {'id': element.id}) %}
+    {% set path = path('app_'~entityName~'_'~action, {'id': element.id}) %}
 {% else %}
-    {% set href = path('app_'~entityName~'_'~action) %}
+    {% set path = path('app_'~entityName~'_'~action) %}
 {% endif %}
 
 {% if confirm is defined %}
@@ -11,7 +11,7 @@
 {% endif %}
 
 {% include 'widget/button/_base.html.twig' with {
-    'href':             href,
+    'path':             path,
     'cssClassModifier': action,
     'text':             text,
     'onClick':          onClick,

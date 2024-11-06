@@ -1,17 +1,22 @@
-{% set buttonClass = 'button' %}
+{#
+# @param    path                route appelée par l'appuis sur le bouton
+# @param    cssClassModifier    modifiers de classe css du bouton
+# @param    text                texte affiché dans le bouton
+# @param    onClick             javascript appelé au click
+#}
+
+
+{% set buttonClasses = 'button' %}
 
 {% if cssClassModifier is defined %}
-    {% set buttonClasses = buttonClass~' '~buttonClass~'--'~cssClassModifier | lower %}
-{% else %}
-    {% set buttonClasses = buttonClass | lower %}
-{% endif %}
-
-{% if not text is defined %}
-    {% set text='must define \'text\' in include' %}
+    {% set buttonClasses = buttonClasses~' '~buttonClasses~'--'~cssClassModifier | lower %}
 {% endif %}
 
 {% if onClick is defined %}
     {% set onClickAction = 'onClick="'~onClick~'"' %}
 {% endif %}
 
-<a href="{{ href }}" class="{{ buttonClasses }}">{{ text }}</a>
+<a class="{{ buttonClasses }}"
+        {% if path is defined %}
+    href="{{ path }}"
+        {% endif %}>{{ text }}</a>
