@@ -9,13 +9,11 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Category>
  */
-class CategoryRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
+class CategoryRepository extends ServiceEntityRepository implements CRUDRepositoryInterface {
+    public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Category::class);
     }
-
+    
     //    /**
     //     * @return Category[] Returns an array of Category objects
     //     */
@@ -30,7 +28,7 @@ class CategoryRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
-
+    
     //    public function findOneBySomeField($value): ?Category
     //    {
     //        return $this->createQueryBuilder('c')

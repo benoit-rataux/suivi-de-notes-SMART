@@ -9,13 +9,11 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Student>
  */
-class StudentRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
+class StudentRepository extends ServiceEntityRepository implements CRUDRepositoryInterface {
+    public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Student::class);
     }
-
+    
     //    /**
     //     * @return Student[] Returns an array of Student objects
     //     */
@@ -30,7 +28,7 @@ class StudentRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
-
+    
     //    public function findOneBySomeField($value): ?Student
     //    {
     //        return $this->createQueryBuilder('s')
