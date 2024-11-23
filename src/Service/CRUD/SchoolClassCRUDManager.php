@@ -3,15 +3,15 @@
 namespace App\Service\CRUD;
 
 use App\Entity\Student;
-use App\Repository\StudentRepository;
+use App\Repository\SchoolClassRepository;
 
 /**
  * @template-extends AbstractCRUDManager<Student>
  */
-class StudentCRUDManager extends AbstractCRUDManager {
+class SchoolClassCRUDManager extends AbstractCRUDManager {
     
     public function __construct(
-        StudentRepository $repository,
+        SchoolClassRepository $repository,
     ) {
         parent::__construct($repository);
     }

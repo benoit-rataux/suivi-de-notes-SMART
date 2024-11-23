@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 /**
- * @template Entity
+ * @template Entity of App\Entity
  */
 interface CRUDRepositoryInterface {
     
@@ -18,4 +18,17 @@ interface CRUDRepositoryInterface {
      */
     public function findAll(): array;
     
+    /**
+     * @param Entity $entity
+     * @param bool $flush
+     * @return void
+     */
+    public function save($entity, bool $flush = false): void;
+    
+    /**
+     * @param Entity $entity
+     * @param bool $flush
+     * @return void
+     */
+    public function remove($entity, bool $flush = false): void;
 }

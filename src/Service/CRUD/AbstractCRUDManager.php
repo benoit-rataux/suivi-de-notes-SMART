@@ -3,16 +3,19 @@
 namespace App\Service\CRUD;
 
 use App\Repository\CRUDRepositoryInterface;
-use DateTimeImmutable;
 
 /**
  * @template Entity
  */
 abstract class AbstractCRUDManager implements CRUDManagerInterface {
-    protected CRUDRepositoryInterface $repository;
+    private CRUDRepositoryInterface $repository;
+    
+    public function __construct(CRUDRepositoryInterface $repository) {
+        $this->repository = $repository;
+    }
     
     public function create($entity): void {
-        $entity->setDateCreation(new DateTimeImmutable());
+//        $entity->setDateCreation(new DateTimeImmutable());
         
         $this->repository->save($entity, true);
     }
@@ -27,7 +30,7 @@ abstract class AbstractCRUDManager implements CRUDManagerInterface {
     }
     
     public function update($entity): void {
-        $entity->setDateLastUpdate(new DateTimeImmutable());
+//        $entity->setDateLastUpdate(new DateTimeImmutable()); // TODO - ajouter dates de création et dernière mise à jour aux entity
         
         $this->repository->save($entity, true);
     }

@@ -3,13 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\SchoolClass;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<SchoolClass>
+ * @extends AbstractCRUDServiceRepository<SchoolClass>
  */
-class SchoolClassRepository extends ServiceEntityRepository {
+class SchoolClassRepository extends AbstractCRUDServiceRepository {
     public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, SchoolClass::class);
     }

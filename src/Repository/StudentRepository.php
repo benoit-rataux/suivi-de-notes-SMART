@@ -3,13 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Student;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Student>
+ * @extends AbstractCRUDServiceRepository<Student>
  */
-class StudentRepository extends ServiceEntityRepository implements CRUDRepositoryInterface {
+class StudentRepository extends AbstractCRUDServiceRepository {
     public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Student::class);
     }

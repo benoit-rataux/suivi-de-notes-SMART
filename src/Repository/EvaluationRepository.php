@@ -3,13 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Evaluation;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Evaluation>
+ * @extends AbstractCRUDServiceRepository<Evaluation>
  */
-class EvaluationRepository extends ServiceEntityRepository implements CRUDRepositoryInterface {
+class EvaluationRepository extends AbstractCRUDServiceRepository {
     public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Evaluation::class);
     }

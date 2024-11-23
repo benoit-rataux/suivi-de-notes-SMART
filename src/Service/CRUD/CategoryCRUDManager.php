@@ -2,6 +2,7 @@
 
 namespace App\Service\CRUD;
 
+use App\Entity\Category;
 use App\Repository\CategoryRepository;
 
 /**
@@ -12,6 +13,6 @@ class CategoryCRUDManager extends AbstractCRUDManager {
     public function __construct(
         CategoryRepository $repository,
     ) {
-        $this->repository = $repository;
+        parent::__construct($repository);
     }
 }

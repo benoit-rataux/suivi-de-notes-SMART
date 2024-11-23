@@ -2,6 +2,7 @@
 
 namespace App\Service\CRUD;
 
+use App\Entity\Evaluation;
 use App\Repository\EvaluationRepository;
 
 /**
@@ -12,6 +13,6 @@ class EvaluationCRUDManager extends AbstractCRUDManager {
     public function __construct(
         EvaluationRepository $repository,
     ) {
-        $this->repository = $repository;
+        parent::__construct($repository);
     }
 }
