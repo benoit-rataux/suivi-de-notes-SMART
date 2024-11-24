@@ -8,6 +8,8 @@ import './bootstrap.js';
 import './styles/app.sass';
 import './styles/button.sass'
 import './styles/menu.sass';
-import './styles/list.sass';
+// crud on entities
+import './styles/entity/global/list.sass';
+import './styles/entity/global/show.sass';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
