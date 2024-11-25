@@ -1,0 +1,10 @@
+<table class="table entity__show__table">
+    <tbody>
+    {% for attrLabel, attr in showedAttributes %}
+        <tr>
+            <th class="label">{{ attrLabel }} :</th>
+            <td class="value">{{ item.(attr) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

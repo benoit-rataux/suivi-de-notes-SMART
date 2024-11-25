@@ -7,5 +7,7 @@
 {% block body %}
     {{ include('_COMPONENT/form/_new_edit.html.twig') }}
     
-    {{ include('_COMPONENT/button/crud/_index.html.twig') }}
+    <div class="entity__new__buttons">
+        {{ include('_COMPONENT/button/crud/_index.html.twig') }}
+    </div>
 {% endblock %}

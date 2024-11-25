@@ -16,4 +16,4 @@
         {% if path is defined %}
             href="{{ path }}"
         {% endif %}
->{{ text }}</a>
+>{{ buttonLabel | default("MysteriousButton") }}</a>

@@ -1,7 +1,14 @@
 .list__table
   width: auto
-  border: solid 1px black
-  border-collapse: separate
+  //border: solid 1px black
+  border-collapse: collapse
+
+  .header
+    position: sticky
+    top: 120px
+    background-image: linear-gradient(#eab026 0%, #ffb919 50%, #cc9915 100%)
+    padding: 0
+    margin: 0
 
   .element
     &__label
@@ -11,7 +18,7 @@
         right: 0.5em
 
     &__value
-      border: solid 1px black
+      //border: solid 1px black
       padding:
         left: 0.5em
         right: 0.5em

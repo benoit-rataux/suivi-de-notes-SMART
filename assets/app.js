@@ -11,5 +11,7 @@ import './styles/menu.sass';
 // crud on entities
 import './styles/entity/global/list.sass';
 import './styles/entity/global/show.sass';
+import './styles/entity/global/edit.sass';
+import './styles/entity/global/delete.sass';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
