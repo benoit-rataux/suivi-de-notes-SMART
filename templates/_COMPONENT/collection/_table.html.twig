@@ -1,8 +1,8 @@
-<table class="list">
+<table class="list__table">
     <thead>
     <tr>
         {% for label, attr in showedAttributes %}
-            <th>{{ label }}</th>
+            <th class="element__label">{{ label }}</th>
         {% endfor %}
     </tr>
     </thead>
@@ -14,14 +14,14 @@
                 
                 {# TODO - REFAC #}
                 {% if item.(attr) is defined %}
-                    <td>{{ item.(attr) }}</td>
+                    <td class="element__value">{{ item.(attr) }}</td>
                 {% else %}
                     {% set subAttrs = attr | split('.') %}
-                    <td>{{ item.(subAttrs[0]).(subAttrs[1]) }}</td>
+                    <td class="element__value">{{ item.(subAttrs[0]).(subAttrs[1]) }}</td>
                 {% endif %}
             
             {% endfor %}
-            <td class="list__element__action-buttons">
+            <td class="element__action-buttons">
                 {{ include('_COMPONENT/button/crud/_read.html.twig') }}
                 {{ include('_COMPONENT/button/crud/_update.html.twig') }}
                 {{ include('_COMPONENT/button/crud/_delete.html.twig') }}
