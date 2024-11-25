@@ -1,0 +1,10 @@
+on:
+  push:
+    branches:
+      -prod
+
+jobs:
+  run_pull:
+    name: run pull
+    runs-on: debian-latest
+    
