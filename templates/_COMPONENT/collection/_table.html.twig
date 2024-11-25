@@ -4,6 +4,10 @@
         {% for label, attr in showedAttributes %}
             <th class="element__label">{{ label }}</th>
         {% endfor %}
+        
+        <th class="action-buttons">
+            {% include '_COMPONENT/button/crud/_create.html.twig' %}
+        </th>
     </tr>
     </thead>
     
@@ -13,15 +17,17 @@
             {% for label, attr  in showedAttributes %}
                 
                 {# TODO - REFAC #}
-                {% if item.(attr) is defined %}
-                    <td class="element__value">{{ item.(attr) }}</td>
-                {% else %}
-                    {% set subAttrs = attr | split('.') %}
-                    <td class="element__value">{{ item.(subAttrs[0]).(subAttrs[1]) }}</td>
-                {% endif %}
+                <td class="element__value">
+                    {% if item.(attr) is defined %}
+                        {{ item.(attr) }}
+                    {% else %}
+                        {% set subAttrs = attr | split('.') %}
+                        {{ item.(subAttrs[0]).(subAttrs[1]) }}
+                    {% endif %}
+                </td>
             
             {% endfor %}
-            <td class="element__action-buttons">
+            <td class="action-buttons">
                 {{ include('_COMPONENT/button/crud/_read.html.twig') }}
                 {{ include('_COMPONENT/button/crud/_update.html.twig') }}
                 {{ include('_COMPONENT/button/crud/_delete.html.twig') }}
