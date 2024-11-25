@@ -12,11 +12,8 @@
     {% set buttonClasses = buttonClasses~' '~buttonClasses~'--'~cssClassModifier | lower %}
 {% endif %}
 
-{% if onClick is defined %}
-    {% set onClickAction = 'onClick="'~onClick~'"' %}
-{% endif %}
-
 <a class="{{ buttonClasses }}"
         {% if path is defined %}
-    href="{{ path }}"
-        {% endif %}>{{ text }}</a>
+            href="{{ path }}"
+        {% endif %}
+>{{ text }}</a>

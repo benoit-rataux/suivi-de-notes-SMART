@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}New Student{% endblock %}
+
+
+{% block body %}
+    {{ include('_COMPONENT/form/_new_edit.html.twig') }}
+    
+    {{ include('_COMPONENT/button/crud/_index.html.twig') }}
+{% endblock %}

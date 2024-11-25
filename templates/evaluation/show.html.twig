@@ -1,34 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'ABSTRACT/entity/show.html.twig' %}
 
-{% set entityName = 'evaluation' %}
+{% set title    = "Évaluation de " evaluation.student.surname evaluation.student.name %}
+{% set item     = evaluation %}
 
-{% block title %}Evaluation{% endblock %}
-
-{% block body %}
-    
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ evaluation.id }}</td>
-        </tr>
-        <tr>
-            <th>Date</th>
-            <td>{{ evaluation.date ? evaluation.date|date('Y-m-d') : '' }}</td>
-        </tr>
-        <tr>
-            <th>Élève</th>
-            <td>{{ evaluation.student.firstname }} {{ evaluation.student.surname }}</td>
-        </tr>
-        <tr>
-            <th>Catégorie</th>
-            <td>{{ evaluation.category.name }}</td>
-        </tr>
-        </tbody>
-    </table>
-    
-    <a class="button" href="{{ path('app_evaluation_index') }}">back to list</a>
-    
-    {% include 'widget/button/crud/_update.html.twig' with { 'element': evaluation} %}
-    {{ include('evaluation/_delete_form.html.twig') }}
-{% endblock %}
+{% set showedAttributes = {
+    'id':                   'ID',
+    'category.name':        'Catégorie',
+    'rate':                 'Note',
+} %}

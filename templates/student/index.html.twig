@@ -1,12 +1,11 @@
-{% extends 'ABSTRACT/crud/index.html.twig' %}
+{% extends 'ABSTRACT/entity/index.html.twig' %}
 
-{% block title %}Étudiants{% endblock %}
-
+{% set title = "Étudiants" %}
 {% set entityName = 'student' %}
-{% set collection = students %}
-{% set colTitles = {
-    1: 'id',
-    2:  'Prénom',
-    3:  'Nom de famille',
+{% set collection = studentCollection %}
+{% set showedAttributes = {
+    'Identifiant':      'id',
+    'Prénom':           'firstname',
+    'Nom de famille':   'surname',
 } %}
 

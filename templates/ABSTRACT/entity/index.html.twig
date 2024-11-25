@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+    {% include '_COMPONENT/button/crud/_create.html.twig' %}
+    
+    {% include '_COMPONENT/collection/_table.html.twig' with {
+        'showedAttributes':    showedAttributes,
+    } %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+    {{ include('_COMPONENT/form/_new_edit.html.twig') }}
+    
+    {{ include('_COMPONENT/button/crud/_index.html.twig') }}
+    {{ include('_COMPONENT/button/crud/_delete.html.twig') }}
+{% endblock %}

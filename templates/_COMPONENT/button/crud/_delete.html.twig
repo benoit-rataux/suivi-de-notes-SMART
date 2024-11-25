@@ -1,0 +1,12 @@
+{#
+@param  Entity  item            an entity to delete
+@param  string  route      'app_entity_snake_name_delete'
+#}
+
+<form method="post" action="{{ path(route.delete, { 'id': item.id }) }}"
+      onsubmit="return confirm('Confirmer la suppression ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ item.id) }}">
+    
+    <button class="button button--delete">Delete</button>
+
+</form>

@@ -1,11 +1,10 @@
-{% extends 'ABSTRACT/crud/index.html.twig' %}
+{% extends 'ABSTRACT/entity/index.html.twig' %}
 
-{% block title %}Catégories{% endblock %}
-
+{% set title = "Catégories" %}
 {% set entityName = 'category' %}
-{% set collection = categories %}
-{% set colTitles = {
-    1: 'id',
-    2: 'Catégorie',
+{% set collection = categoryCollection %}
+{% set showedAttributes = {
+    'Identifiant':      'id',
+    'Catégorie':        'name',
 } %}
 

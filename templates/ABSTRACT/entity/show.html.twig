@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+    <table class="table entity__show__table">
+        <tbody>
+        {% for attrName,attrLabel in showedAttributes %}
+            <tr>
+                <th class="label">{{ attrLabel }} :</th>
+                <td class="value">{{ attribute(item, attrName) }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    {{ include('_COMPONENT/button/crud/_index.html.twig') }}
+    {{ include('_COMPONENT/button/crud/_update.html.twig') }}
+    {{ include('_COMPONENT/button/crud/_delete.html.twig') }}
+{% endblock %}
