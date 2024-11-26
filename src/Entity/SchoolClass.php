@@ -6,14 +6,17 @@ use App\Repository\SchoolClassRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: SchoolClassRepository::class)]
 class SchoolClass {
+    #[Groups('student')]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
     
+    #[Groups('student')]
     #[ORM\Column(length: 50)]
     private ?string $name = null;
     

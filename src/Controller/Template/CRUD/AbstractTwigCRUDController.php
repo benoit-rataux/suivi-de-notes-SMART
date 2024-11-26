@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\html\crud;
+namespace App\Controller\Template\CRUD;
 
 use App\Service\CRUD\CRUDManagerInterface;
 use ReflectionClass;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 /**
  * @template Entity
  */
-abstract class AbstractCRUDController extends AbstractController {
+abstract class AbstractTwigCRUDController extends AbstractController {
     
     // routes 'app_<entity_snake_name>_...';
     private const INDEX  = 'index';
@@ -80,7 +80,7 @@ abstract class AbstractCRUDController extends AbstractController {
             return $this->redirectToRoute($this->routes[self::INDEX]);
         }
         
-        return $this->makeTwigResponse('new', [
+        return $this->makeResponse('new', [
             $this->entityFormLabel => $form,
             $this->itemLabel       => $item,
         ]);
@@ -94,7 +94,7 @@ abstract class AbstractCRUDController extends AbstractController {
         $collection = $this->manager->read();
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::READ_ALL);
         
-        return $this->makeTwigResponse(self::INDEX, [
+        return $this->makeResponse(self::INDEX, [
             $this->collectionLabel => $collection,
         ]);
     }
@@ -107,7 +107,7 @@ abstract class AbstractCRUDController extends AbstractController {
         $item = $this->manager->read($id);
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::READ, $item);
         
-        return $this->makeTwigResponse(self::READ, [
+        return $this->makeResponse(self::READ, [
             $this->itemLabel => $item,
         ]);
     }
@@ -131,7 +131,7 @@ abstract class AbstractCRUDController extends AbstractController {
             return $this->redirectToRoute($this->routes[self::INDEX]);
         }
         
-        return $this->makeTwigResponse(self::UPDATE, [
+        return $this->makeResponse(self::UPDATE, [
             $this->itemLabel       => $item,
             $this->entityFormLabel => $form,
         ]);
@@ -152,12 +152,12 @@ abstract class AbstractCRUDController extends AbstractController {
     }
     
     
-    private function makeTwigResponse(string $templateName,
-                                      array  $parameters,
+    private function makeResponse(string $action,
+                                  array  $parameters,
     ): Response {
         // ajout des routes aux paramètres envoyés au template
         $parameters['route'] = $this->routes;
-        return $this->render($this->templatesDirectory . $templateName . '.html.twig',
+        return $this->render($this->templatesDirectory . $action . '.html.twig',
                              $parameters,
         );
     }

@@ -6,23 +6,28 @@ use App\Repository\EvaluationRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: EvaluationRepository::class)]
 class Evaluation {
+    #[Groups('student')]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
     
+    #[Groups('student')]
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?DateTimeImmutable $date = null;
     
     #[ORM\ManyToOne(inversedBy: 'evaluations')]
     private ?Student $student = null;
     
+    #[Groups('student')]
     #[ORM\ManyToOne(inversedBy: 'evaluations')]
     private ?Category $category = null;
     
+    #[Groups('student')]
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $grade = null;
     
