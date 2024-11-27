@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}New Student{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 
 {% block body %}
     {{ include('_COMPONENT/form/_new_edit.html.twig') }}
-    
+
     <div class="entity__new__buttons">
         {{ include('_COMPONENT/button/crud/_index.html.twig') }}
     </div>
