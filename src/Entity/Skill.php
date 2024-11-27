@@ -26,6 +26,9 @@ class Skill {
     #[ORM\OneToMany(targetEntity: Evaluation::class, mappedBy: 'skill')]
     private Collection $evaluations;
     
+    #[ORM\ManyToOne(inversedBy: 'skills')]
+    private ?Category $category = null;
+    
     public function __construct() {
         $this->evaluations = new ArrayCollection();
     }
@@ -67,6 +70,16 @@ class Skill {
                 $evaluation->setSkill(null);
             }
         }
+        
+        return $this;
+    }
+    
+    public function getCategory(): ?Category {
+        return $this->category;
+    }
+    
+    public function setCategory(?Category $category): static {
+        $this->category = $category;
         
         return $this;
     }

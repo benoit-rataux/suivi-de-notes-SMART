@@ -1,9 +1,10 @@
 {% extends 'ABSTRACT/entity/show.html.twig' %}
 
-{% set title    = "Compétence" %}
+{% set title    = "Compétence : "~skill.name %}
 {% set item     = skill %}
 
-{% set showedAttributes = {
-    'Identifiant':      'id',
-    'Compétence':       'name',
+{% set showedValues = {
+    'Identifiant':      skill.id,
+    'Domaine':          skill.category.domain.name,
+    'Catégorie':        skill.category.name,
 } %}

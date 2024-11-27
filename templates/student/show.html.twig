@@ -3,8 +3,8 @@
 {% set title    = "Élève" %}
 {% set item     = student %}
 
-{% set showedAttributes = {
-    'Identifiant':      'id',
-    'Prénom':           'firstname',
-    'Nom':              'surname',
+{% set showedValues = {
+    'Identifiant':      student.id,
+    'Prénom':           student.firstname,
+    'Nom':              student.surname,
 } %}

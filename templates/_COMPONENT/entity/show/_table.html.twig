@@ -1,9 +1,11 @@
 <table class="table entity__show__table">
     <tbody>
-    {% for attrLabel, attr in showedAttributes %}
+    {% for label, value in showedValues %}
         <tr>
-            <th class="label">{{ attrLabel }} :</th>
-            <td class="value">{{ item.(attr) }}</td>
+            <th class="label">{{ label }} :</th>
+            <td class="value">{{ value }}</td>
+            {# ### REFAC ### #}
+        
         </tr>
     {% endfor %}
     </tbody>

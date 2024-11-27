@@ -1,9 +1,8 @@
 {% extends 'ABSTRACT/entity/show.html.twig' %}
 
-{% set title    = "Classe" %}
+{% set title    = "Classe "~schoolClass.name %}
 {% set item     = schoolClass %}
 
 {% set showedAttributes = {
-    'Identifiant':          'id',
-    'Classe':               'name',
+    'Identifiant':          schoolClass.id,
 } %}

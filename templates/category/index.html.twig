@@ -1,0 +1,11 @@
+{% extends 'ABSTRACT/entity/index.html.twig' %}
+
+{% set title        = "Catégorie" %}
+{% set entityName   = 'category' %}
+{% set collection   = categoryCollection %}
+{% set showedAttributes = {
+    'Identifiant':      'id',
+    'Catégorie':        'name',
+    'Domaine':          'domain.name',
+} %}
+

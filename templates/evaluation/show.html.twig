@@ -3,8 +3,8 @@
 {% set title    = "Évaluation de " evaluation.student.surname evaluation.student.name %}
 {% set item     = evaluation %}
 
-{% set showedAttributes = {
-    'Identifiant':      'id',
-    'Catégorie':        'category.name',
-    'Note':             'grade',
+{% set showedValues = {
+    'Identifiant':      evaluation.id,
+    'Catégorie':        evaluation.category.name,
+    'Note':             evaluation.grade,
 } %}

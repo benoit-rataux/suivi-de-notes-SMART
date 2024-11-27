@@ -1,0 +1,15 @@
+{% extends 'ABSTRACT/entity/show.html.twig' %}
+
+{% set title    = "Domaine "~domain.name %}
+{% set item     = domain %}
+
+{% set showedValues = {
+    'Identifiant':      domain.id,
+} %}
+
+{% for category in domain.categories %}
+    {% set label = 'Catégorie '~loop.index %}
+    {% set showedValues = showedValues|merge({
+        (label) :     domain.categories[loop.index0].name
+    }) %}
+{% endfor %}
