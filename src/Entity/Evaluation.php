@@ -25,7 +25,7 @@ class Evaluation {
     
     #[Groups('student')]
     #[ORM\ManyToOne(inversedBy: 'evaluations')]
-    private ?Category $category = null;
+    private ?Skill $skill = null;
     
     #[Groups('student')]
     #[ORM\Column(type: Types::SMALLINT)]
@@ -55,12 +55,12 @@ class Evaluation {
         return $this;
     }
     
-    public function getCategory(): ?Category {
-        return $this->category;
+    public function getSkill(): ?Skill {
+        return $this->skill;
     }
     
-    public function setCategory(?Category $category): static {
-        $this->category = $category;
+    public function setSkill(?Skill $skill): static {
+        $this->skill = $skill;
         
         return $this;
     }

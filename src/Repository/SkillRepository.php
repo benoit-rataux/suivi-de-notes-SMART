@@ -2,15 +2,15 @@
 
 namespace App\Repository;
 
-use App\Entity\Category;
+use App\Entity\Skill;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends AbstractCRUDServiceRepository<Category>
+ * @extends AbstractCRUDServiceRepository<Skill>
  */
-class CategoryRepository extends AbstractCRUDServiceRepository {
+class SkillRepository extends AbstractCRUDServiceRepository {
     public function __construct(ManagerRegistry $registry) {
-        parent::__construct($registry, Category::class);
+        parent::__construct($registry, Skill::class);
     }
     
     //    /**

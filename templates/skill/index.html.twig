@@ -1,0 +1,10 @@
+{% extends 'ABSTRACT/entity/index.html.twig' %}
+
+{% set title        = "Compétences" %}
+{% set entityName   = 'skill' %}
+{% set collection   = skillCollection %}
+{% set showedAttributes = {
+    'Identifiant':      'id',
+    'Compétence':       'name',
+} %}
+

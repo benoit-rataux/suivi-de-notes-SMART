@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\Evaluation;
+use App\Entity\Skill;
 use App\Entity\Student;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -24,7 +24,7 @@ class EvaluationType extends AbstractType implements CRUDTypeInterface {
                 },
             ])
             ->add('category', EntityType::class, [
-                'class'        => Category::class,
+                'class'        => Skill::class,
                 'choice_label' => 'name',
             ])
             ->add('grade', ChoiceType::class, [

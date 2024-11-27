@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\SkillRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category {
+#[ORM\Entity(repositoryClass: SkillRepository::class)]
+class Skill {
     #[Groups('student')]
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,7 +23,7 @@ class Category {
     /**
      * @var Collection<int, Evaluation>
      */
-    #[ORM\OneToMany(targetEntity: Evaluation::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Evaluation::class, mappedBy: 'skill')]
     private Collection $evaluations;
     
     public function __construct() {
@@ -54,7 +54,7 @@ class Category {
     public function addEvaluation(Evaluation $evaluation): static {
         if(!$this->evaluations->contains($evaluation)) {
             $this->evaluations->add($evaluation);
-            $evaluation->setCategory($this);
+            $evaluation->setSkill($this);
         }
         
         return $this;
@@ -63,8 +63,8 @@ class Category {
     public function removeEvaluation(Evaluation $evaluation): static {
         if($this->evaluations->removeElement($evaluation)) {
             // set the owning side to null (unless already changed)
-            if($evaluation->getCategory() === $this) {
-                $evaluation->setCategory(null);
+            if($evaluation->getSkill() === $this) {
+                $evaluation->setSkill(null);
             }
         }
         
