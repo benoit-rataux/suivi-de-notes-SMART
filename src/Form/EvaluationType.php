@@ -12,21 +12,28 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EvaluationType extends AbstractType implements CRUDTypeInterface {
-    public function buildForm(FormBuilderInterface $builder, array $options): void {
+
+    public function buildForm(FormBuilderInterface $builder,
+                              array                $options,
+    ): void {
         $builder
             ->add('date', null, [
                 'widget' => 'single_text',
-            ])
+            ],
+            )
             ->add('student', EntityType::class, [
                 'class'        => Student::class,
-                'choice_label' => function(Student $student): string {
+                'choice_label' => function(Student $student,
+                ): string {
                     return $student->getFirstname() . ' ' . $student->getSurname();
                 },
-            ])
-            ->add('category', EntityType::class, [
+            ],
+            )
+            ->add('skill', EntityType::class, [
                 'class'        => Skill::class,
                 'choice_label' => 'name',
-            ])
+            ],
+            )
             ->add('grade', ChoiceType::class, [
                 'multiple' => false,
                 'choices'  => [
@@ -35,13 +42,15 @@ class EvaluationType extends AbstractType implements CRUDTypeInterface {
                     '3' => 3,
                     '4' => 4,
                 ],
-            ])
-        ;
+            ],
+            );
     }
-    
+
     public function configureOptions(OptionsResolver $resolver): void {
         $resolver->setDefaults([
                                    'data_class' => Evaluation::class,
-                               ]);
+                               ],
+        );
     }
+
 }
