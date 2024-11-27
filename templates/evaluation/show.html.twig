@@ -1,10 +1,12 @@
 {% extends 'ABSTRACT/entity/show.html.twig' %}
 
-{% set title    = "Évaluation de " evaluation.student.surname evaluation.student.name %}
+{% set title    = "Évaluation de "~evaluation.student.firstname~" "~evaluation.student.surname %}
 {% set item     = evaluation %}
 
 {% set showedValues = {
     'Identifiant':      evaluation.id,
-    'Catégorie':        evaluation.category.name,
+    'Domaine':          evaluation.skill.category.domain.name,
+    'Catégorie':        evaluation.skill.category.name,
+    'Compétence':       evaluation.skill.name,
     'Note':             evaluation.grade,
 } %}
