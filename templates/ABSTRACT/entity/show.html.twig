@@ -2,11 +2,12 @@
 
 
 {% block title %}{{ title }}{% endblock %}
+{% set subtitle = '#'~item.id %}
 
 
 {% block body %}
     {{ include('_COMPONENT/entity/show/_table.html.twig') }}
-    
+
     <div class="entity__show__buttons">
         {{ include('_COMPONENT/button/crud/_index.html.twig') }}
         {{ include('_COMPONENT/button/crud/_update.html.twig') }}

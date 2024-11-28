@@ -2,11 +2,11 @@
 
 
 {% block title %}{{ title }}{% endblock %}
-
+{% set subtitle = '#'~item.id %}
 
 {% block body %}
     {{ include('_COMPONENT/form/_new_edit.html.twig') }}
-    
+
     <div class="entity__edit__buttons">
         {{ include('_COMPONENT/button/crud/_index.html.twig') }}
         {{ include('_COMPONENT/button/crud/_delete.html.twig') }}
