@@ -1,10 +1,8 @@
 {% extends 'ABSTRACT/entity/show.html.twig' %}
 
-{% set title    = "Élève" %}
+{% set title    = 'Élève : '~student.firstname~' '~student.surname %}
 {% set item     = student %}
 
+{# TODO - ajouter la liste des évaluations #}
 {% set showedValues = {
-    'Identifiant':      student.id,
-    'Prénom':           student.firstname,
-    'Nom':              student.surname,
 } %}

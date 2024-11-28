@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-
+{# TODO - title : block -> set variable #}
 {% block title %}{{ title }}{% endblock %}
-{% set subtitle = '#'~item.id %}
-
+{% set subtitle ="Ref : "~item.id %}
 
 {% block body %}
     {{ include('_COMPONENT/entity/show/_table.html.twig') }}

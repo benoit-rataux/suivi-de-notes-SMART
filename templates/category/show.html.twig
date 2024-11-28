@@ -1,9 +1,8 @@
 {% extends 'ABSTRACT/entity/show.html.twig' %}
 
-{% set title    = "Catégorie "~category.name %}
+{% set title    = "Catégorie : "~category.name %}
 {% set item     = category %}
 
 {% set showedValues = {
-    'Identifiant':      category.id,
     'Domaine':          category.domain.name,
 } %}

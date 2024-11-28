@@ -1,10 +1,9 @@
 {% extends 'ABSTRACT/entity/show.html.twig' %}
 
-{% set title    = "Domaine "~domain.name %}
+{% set title    = "Domaine : "~domain.name %}
 {% set item     = domain %}
 
 {% set showedValues = {
-    'Identifiant':      domain.id,
 } %}
 
 {% for category in domain.categories %}
