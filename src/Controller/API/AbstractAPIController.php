@@ -16,11 +16,11 @@ use Symfony\Component\String\UnicodeString;
 abstract class AbstractAPIController extends AbstractController {
     
     // routes 'app_<entity_snake_name>_...';
-    private const INDEX  = 'index';
-    private const CREATE = 'new';
-    private const READ   = 'show';
-    private const UPDATE = 'edit';
-    private const DELETE = 'delete';
+    private const READ_ALL = 'index';
+    private const CREATE   = 'new';
+    private const READ     = 'show';
+    private const UPDATE   = 'edit';
+    private const DELETE   = 'delete';
 
 //    private const LABEL_ITEM       = 'item';
 //    private const LABEL_COLLECTION = 'collection';
