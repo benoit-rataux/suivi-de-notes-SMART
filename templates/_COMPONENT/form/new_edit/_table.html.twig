@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+
+<table>
+    {% for row in form %}
+        <tr>
+            <th>{{ form_label(row) }}</th>
+            <td>{{ form_widget(row) }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<button class="button button--save">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
