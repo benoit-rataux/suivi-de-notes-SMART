@@ -62,7 +62,7 @@ abstract class AbstractAPIController extends AbstractController {
     #[Route('/new', name: self::CREATE, methods: ['POST'])]
     public function create(Request             $request,
                            SerializerInterface $serializer,
-    ): Response {
+    ): Response {   // TODO - return JsonResponse ?
 
         // contrôle des droits
 //        $item = new $this->entity();
