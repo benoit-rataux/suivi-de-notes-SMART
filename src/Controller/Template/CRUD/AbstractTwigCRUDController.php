@@ -63,8 +63,8 @@ abstract class AbstractTwigCRUDController extends AbstractController {
         $routeStart               = $reflectionAttributeRoute->getArguments()['name'];
 
         // routes
-        $this->routes[self::READ_ALL] = $routeStart . self::READ_ALL;
         $this->routes[self::CREATE]   = $routeStart . self::CREATE;
+        $this->routes[self::READ_ALL] = $routeStart . self::READ_ALL;
         $this->routes[self::READ]     = $routeStart . self::READ;
         $this->routes[self::UPDATE]   = $routeStart . self::UPDATE;
         $this->routes[self::DELETE]   = $routeStart . self::DELETE;
