@@ -57,12 +57,12 @@ abstract class AbstractAPIController extends AbstractController {
         $this->listFiltersFormLabel ??= $this->itemLabel . 'FiltersForm';               // 'maSuperEntiteFiltersForm'
         
         // routes 'app_ma_super_entite_...'
-        $routeStart                 = 'api_' . $this->entitySnakeName . '_';
-        $this->routes[self::INDEX]  = $routeStart . self::INDEX;
-        $this->routes[self::CREATE] = $routeStart . self::CREATE;
-        $this->routes[self::READ]   = $routeStart . self::READ;
-        $this->routes[self::UPDATE] = $routeStart . self::UPDATE;
-        $this->routes[self::DELETE] = $routeStart . self::DELETE;
+        $routeStart                   = 'api_' . $this->entitySnakeName . '_';
+        $this->routes[self::CREATE]   = $routeStart . self::CREATE;
+        $this->routes[self::READ_ALL] = $routeStart . self::READ_ALL;
+        $this->routes[self::READ]     = $routeStart . self::READ;
+        $this->routes[self::UPDATE]   = $routeStart . self::UPDATE;
+        $this->routes[self::DELETE]   = $routeStart . self::DELETE;
     }
     
     
@@ -80,7 +80,7 @@ abstract class AbstractAPIController extends AbstractController {
             $this->manager->create($item);
             
             $this->addFlash('success', 'création : succès');
-            return $this->redirectToRoute($this->routes[self::INDEX]);
+            return $this->redirectToRoute($this->routes[self::READ_ALL]);
         }
         
         return $this->makeResponse('new', [
@@ -130,7 +130,7 @@ abstract class AbstractAPIController extends AbstractController {
             $this->manager->update($item);
             $message = 'entitée modifiée avec succès';
             $this->addFlash('sucess', $message);
-            return $this->redirectToRoute($this->routes[self::INDEX]);
+            return $this->redirectToRoute($this->routes[self::READ_ALL]);
         }
         
         return $this->makeResponse($item);
@@ -146,13 +146,20 @@ abstract class AbstractAPIController extends AbstractController {
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::DELETE, $item);
         
         $this->manager->delete($item);
-        $this->addFlash('success', 'entitée suprimée');
-        return $this->redirectToRoute($this->routes[self::INDEX]);
+//        $this->addFlash('success', 'entitée suprimée');
+//        return $this->redirectToRoute($this->routes[self::INDEX]);
+        return $this->makeResponse(data  : $item,
+                                   status: Response::HTTP_OK,
+        );
     }
-    
-    
-    private function makeResponse($data,
+
+
+    private function makeResponse(mixed  $data,
+                                  string $status,
     ): Response {
-        return $this->json($data, context: ['groups' => $this->entitySnakeName]);
+        return $this->json(data   : $data,
+                           context: ['groups' => $this->entitySnakeName],
+                           status : $status,
+        );
     }
 }
