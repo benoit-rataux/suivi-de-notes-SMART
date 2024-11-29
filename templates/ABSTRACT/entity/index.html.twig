@@ -2,7 +2,7 @@
 
 
 {% block body %}
-    {% include '_COMPONENT/collection/_table.html.twig' with {
+    {{ include('_COMPONENT/_collection.html.twig', {
         'showedAttributes':    showedAttributes,
-    } %}
+    }) }}
 {% endblock %}
