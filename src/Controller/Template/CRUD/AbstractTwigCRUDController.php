@@ -17,11 +17,11 @@ use Symfony\Component\Routing\Attribute\Route;
 abstract class AbstractTwigCRUDController extends AbstractController {
 
     // routes 'app_<entity_snake_name>_...';
-    private const INDEX  = 'index';
-    private const CREATE = 'new';
-    private const READ   = 'show';
-    private const UPDATE = 'edit';
-    private const DELETE = 'delete';
+    private const READ_ALL = 'index';
+    private const CREATE   = 'new';
+    private const READ     = 'show';
+    private const UPDATE   = 'edit';
+    private const DELETE   = 'delete';
 
 //    private const LABEL_ITEM       = 'item';
 //    private const LABEL_COLLECTION = 'collection';
@@ -63,11 +63,11 @@ abstract class AbstractTwigCRUDController extends AbstractController {
         $routeStart               = $reflectionAttributeRoute->getArguments()['name'];
 
         // routes
-        $this->routes[self::INDEX]  = $routeStart . self::INDEX;
-        $this->routes[self::CREATE] = $routeStart . self::CREATE;
-        $this->routes[self::READ]   = $routeStart . self::READ;
-        $this->routes[self::UPDATE] = $routeStart . self::UPDATE;
-        $this->routes[self::DELETE] = $routeStart . self::DELETE;
+        $this->routes[self::READ_ALL] = $routeStart . self::READ_ALL;
+        $this->routes[self::CREATE]   = $routeStart . self::CREATE;
+        $this->routes[self::READ]     = $routeStart . self::READ;
+        $this->routes[self::UPDATE]   = $routeStart . self::UPDATE;
+        $this->routes[self::DELETE]   = $routeStart . self::DELETE;
     }
 
 
@@ -85,7 +85,7 @@ abstract class AbstractTwigCRUDController extends AbstractController {
             $this->manager->create($item);
 
             $this->addFlash('success', 'création : succès');
-            return $this->redirectToRoute($this->routes[self::INDEX]);
+            return $this->redirectToRoute($this->routes[self::READ_ALL]);
         }
 
         return $this->makeResponse('new', [
@@ -94,14 +94,14 @@ abstract class AbstractTwigCRUDController extends AbstractController {
         ]);
     }
 
-    #[Route('/', name: self::INDEX, methods: ['GET'])]
+    #[Route('/', name: self::READ_ALL, methods: ['GET'])]
     public function readAll(Request $request,
     ): Response {
         // contrôle des droits
         $collection = $this->manager->read();
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::READ_ALL);
 
-        return $this->makeResponse(self::INDEX, [
+        return $this->makeResponse(self::READ_ALL, [
             $this->collectionLabel => $collection,
         ],
         );
@@ -125,7 +125,7 @@ abstract class AbstractTwigCRUDController extends AbstractController {
 
             $message = '';
             $this->addFlash('error', $message);
-            return $this->redirectToRoute($this->routes[self::INDEX]);
+            return $this->redirectToRoute($this->routes[self::READ_ALL]);
         }
     }
 
@@ -144,7 +144,7 @@ abstract class AbstractTwigCRUDController extends AbstractController {
             $this->manager->update($item);
             $message = 'entitée modifiée avec succès';
             $this->addFlash('sucess', $message);
-            return $this->redirectToRoute($this->routes[self::INDEX]);
+            return $this->redirectToRoute($this->routes[self::READ_ALL]);
         }
 
         return $this->makeResponse(self::UPDATE, [
@@ -164,7 +164,7 @@ abstract class AbstractTwigCRUDController extends AbstractController {
 
         $this->manager->delete($item);
         $this->addFlash('success', 'entitée suprimée');
-        return $this->redirectToRoute($this->routes[self::INDEX]);
+        return $this->redirectToRoute($this->routes[self::READ_ALL]);
     }
 
     private function makeResponse(string $action,
