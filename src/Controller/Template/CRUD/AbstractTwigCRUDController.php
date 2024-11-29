@@ -3,7 +3,9 @@
 namespace App\Controller\Template\CRUD;
 
 use App\Service\CRUD\CRUDManagerInterface;
+use App\Service\Exception\BLLCRUDException;
 use ReflectionClass;
+use ReflectionObject;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,9 +54,13 @@ abstract class AbstractTwigCRUDController extends AbstractController {
         $this->collectionLabel      ??= $this->itemLabel . 'Collection';          // 'maSuperEntiteList'
         $this->entityFormLabel      ??= $this->itemLabel . 'Form';                // 'maSuperEntiteForm'
         $this->listFiltersFormLabel ??= $this->itemLabel . 'FiltersForm';         // 'maSuperEntiteFiltersForm'
-        
-        // routes 'app_ma_super_entite_...'
-        $routeStart                 = 'app_' . $entitySnakeName . '_';
+
+        // récupération de l'attribut route de la classe concrète du controller
+        // pour définir le début de toutes les routes
+        $reflectionAttributeRoute = (new ReflectionObject($this))->getAttributes(Route::class)[0];
+        $routeStart               = $reflectionAttributeRoute->getArguments()['name'];
+
+        // routes
         $this->routes[self::INDEX]  = $routeStart . self::INDEX;
         $this->routes[self::CREATE] = $routeStart . self::CREATE;
         $this->routes[self::READ]   = $routeStart . self::READ;
@@ -103,13 +109,22 @@ abstract class AbstractTwigCRUDController extends AbstractController {
     public function read(Request $request,
                          int     $id,
     ): Response {
-        // contrôle des droits
-        $item = $this->manager->read($id);
+        try {
+            // contrôle des droits
+            $item = $this->manager->read($id);
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::READ, $item);
-        
-        return $this->makeResponse(self::READ, [
-            $this->itemLabel => $item,
-        ]);
+
+            return $this->makeResponse(self::READ, [
+                $this->itemLabel => $item,
+            ],
+            );
+        }
+        catch(BLLCRUDException $e) {
+
+            $message = '';
+            $this->addFlash('error', $message);
+            return $this->redirectToRoute($this->routes[self::INDEX]);
+        }
     }
     
     
