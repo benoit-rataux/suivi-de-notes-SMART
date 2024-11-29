@@ -10,12 +10,15 @@ use Symfony\Component\Routing\Attribute\Route;
 /**
  * @extends AbstractTwigCRUDController<Category>
  */
-#[Route('/category', name: 'app_category_')]
+#[Route('/crud/category', name: 'app_crud_category_')]
 final class CategoryCRUDController extends AbstractTwigCRUDController {
+
     public function __construct(CategoryCRUDManager $manager,
     ) {
         parent::__construct(Category::class,
                             $manager,
-                            CategoryType::class);
+                            CategoryType::class,
+        );
     }
+
 }

@@ -10,11 +10,14 @@ use Symfony\Component\Routing\Attribute\Route;
 /**
  * @extends AbstractTwigCRUDController<Skill>
  */
-#[Route('/skill', name: 'app_skill_')]
+#[Route('/crud/skill', name: 'app_crud_skill_')]
 final class SkillCRUDController extends AbstractTwigCRUDController {
+
     public function __construct(SkillCRUDManager $manager) {
         parent::__construct(Skill::class,
                             $manager,
-                            SkillType::class);
+                            SkillType::class,
+        );
     }
+
 }

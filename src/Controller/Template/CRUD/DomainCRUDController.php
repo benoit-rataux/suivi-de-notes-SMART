@@ -10,12 +10,15 @@ use Symfony\Component\Routing\Attribute\Route;
 /**
  * @extends AbstractTwigCRUDController<Domain>
  */
-#[Route('/domain', name: 'app_domain_')]
+#[Route('/crud/domain', name: 'app_crud_domain_')]
 final class DomainCRUDController extends AbstractTwigCRUDController {
+
     public function __construct(DomainCRUDManager $manager,
     ) {
         parent::__construct(Domain::class,
                             $manager,
-                            DomainType::class);
+                            DomainType::class,
+        );
     }
+
 }

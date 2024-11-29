@@ -10,11 +10,14 @@ use Symfony\Component\Routing\Attribute\Route;
 /**
  * @extends AbstractTwigCRUDController<Student>
  */
-#[Route('/student', name: 'app_student_')]
+#[Route('/crud/student', name: 'app_crud_student_')]
 final class StudentCRUDController extends AbstractTwigCRUDController {
+
     public function __construct(StudentCRUDManager $manager) {
         parent::__construct(Student::class,
                             $manager,
-                            StudentType::class);
+                            StudentType::class,
+        );
     }
+
 }
