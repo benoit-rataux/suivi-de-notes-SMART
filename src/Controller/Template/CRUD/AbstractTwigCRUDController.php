@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
  * @template Entity
  */
 abstract class AbstractTwigCRUDController extends AbstractController {
-    
+
     // routes 'app_<entity_snake_name>_...';
     private const INDEX  = 'index';
     private const CREATE = 'new';
@@ -26,9 +26,9 @@ abstract class AbstractTwigCRUDController extends AbstractController {
 //    private const LABEL_ITEM       = 'item';
 //    private const LABEL_COLLECTION = 'collection';
 //    private const LABEL_FORM       = 'form';
-    
+
     private array $routes;
-    
+
     protected function __construct(
         private readonly string               $entity,
         private readonly CRUDManagerInterface $manager,
@@ -44,11 +44,13 @@ abstract class AbstractTwigCRUDController extends AbstractController {
         $entityName      = (new ReflectionClass($entity))->getShortName();
         $entitySnakeName = strtolower(preg_replace('/(?<!^)[A-Z]/',
                                                    '_$0',
-                                                   $entityName));
-        
+                                                   $entityName,
+                                      ),
+        );
+
         // nom du répertoire contenant les templates twig
         $this->templatesDirectory ??= $entitySnakeName . '/';
-        
+
         // label des variables à envoyer à twig en camel case
         $this->itemLabel            ??= lcfirst($entityName);                     // 'maSuperEntite'
         $this->collectionLabel      ??= $this->itemLabel . 'Collection';          // 'maSuperEntiteList'
@@ -67,45 +69,45 @@ abstract class AbstractTwigCRUDController extends AbstractController {
         $this->routes[self::UPDATE] = $routeStart . self::UPDATE;
         $this->routes[self::DELETE] = $routeStart . self::DELETE;
     }
-    
-    
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+
+
+    #[Route('/new', name: self::CREATE, methods: ['GET', 'POST'])]
     public function create(Request $request): Response {
-        
+
         // contrôle des droits
         $item = new $this->entity();
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::CREATE, $item);
-        
+
         $form = $this->createForm($this->entityType, $item);
         $form->handleRequest($request);
-        
+
         if($form->isSubmitted() && $form->isValid()) {
             $this->manager->create($item);
-            
+
             $this->addFlash('success', 'création : succès');
             return $this->redirectToRoute($this->routes[self::INDEX]);
         }
-        
+
         return $this->makeResponse('new', [
             $this->entityFormLabel => $form,
             $this->itemLabel       => $item,
         ]);
     }
-    
-    
-    #[Route('/', name: 'index', methods: ['GET'])]
+
+    #[Route('/', name: self::INDEX, methods: ['GET'])]
     public function readAll(Request $request,
     ): Response {
         // contrôle des droits
         $collection = $this->manager->read();
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::READ_ALL);
-        
+
         return $this->makeResponse(self::INDEX, [
             $this->collectionLabel => $collection,
-        ]);
+        ],
+        );
     }
-    
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
+
+    #[Route('/{id}', name: self::READ, methods: ['GET'])]
     public function read(Request $request,
                          int     $id,
     ): Response {
@@ -126,47 +128,45 @@ abstract class AbstractTwigCRUDController extends AbstractController {
             return $this->redirectToRoute($this->routes[self::INDEX]);
         }
     }
-    
-    
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+
+    #[Route('/{id}/edit', name: self::UPDATE, methods: ['GET', 'POST'])]
     public function update(Request $request,
                            int     $id,
     ): Response {
         // Contrôle des droits
         $item = $this->manager->read($id);
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::UPDATE, $item);
-        
+
         $form = $this->createForm($this->entityType, $item);
         $form->handleRequest($request);
-        
+
         if($form->isSubmitted() && $form->isValid()) {
             $this->manager->update($item);
             $message = 'entitée modifiée avec succès';
             $this->addFlash('sucess', $message);
             return $this->redirectToRoute($this->routes[self::INDEX]);
         }
-        
+
         return $this->makeResponse(self::UPDATE, [
             $this->itemLabel       => $item,
             $this->entityFormLabel => $form,
-        ]);
+        ],
+        );
     }
-    
-    
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+
+    #[Route('/{id}', name: self::DELETE, methods: ['POST'])]
     public function delete(Request $request,
                            int     $id,
     ): Response {
         // Contrôle des droits
         $item = $this->manager->read($id);
 //        $this->denyAccessUnlessGranted($this->entityCRUDVoter::DELETE, $item);
-        
+
         $this->manager->delete($item);
         $this->addFlash('success', 'entitée suprimée');
         return $this->redirectToRoute($this->routes[self::INDEX]);
     }
-    
-    
+
     private function makeResponse(string $action,
                                   array  $parameters,
     ): Response {
@@ -176,4 +176,5 @@ abstract class AbstractTwigCRUDController extends AbstractController {
                              $parameters,
         );
     }
+
 }
