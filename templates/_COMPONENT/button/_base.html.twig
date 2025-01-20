@@ -8,6 +8,9 @@
 
 {% set buttonClasses = 'button' %}
 
+{% if class is defined %}
+    {% set buttonClasses = buttonClasses~" "~class | lower %}
+{% endif %}
 {% if cssClassModifier is defined %}
     {% set buttonClasses = buttonClasses~' '~buttonClasses~'--'~cssClassModifier | lower %}
 {% endif %}

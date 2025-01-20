@@ -2,4 +2,10 @@
 
 {% set title = "Bonjour !✅" %}
 
-{% block body %}{% endblock %}
+{% block body %}
+    {{ include('_COMPONENT/button/_base.html.twig', {
+        'path': path('app_smart_index'),
+        'text': 'Smart',
+        'cssClassModifier': 'navigation',
+    }) }}
+{% endblock %}
