@@ -1,0 +1,14 @@
+{% extends 'ABSTRACT/base.html.twig' %}
+
+{% set title = "smart page" %}
+{% set subtitle = "coucou" %}
+
+{% block body %}
+    {{ include('_COMPONENT/_collection.html.twig', {
+        'showedAttributes': {
+            'Élève':        "student.firstname",
+            'Domaine':      "category.domain.name",
+            'Catégorie':    "category.name",
+        }
+    }) }}
+{% endblock %}
